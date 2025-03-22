@@ -1,0 +1,148 @@
+.root{
+    -fx-background-color: #232946;
+}
+#Vbox_formulario{
+    -fx-background-color: #7f5af0;
+    -fx-background-radius: 101;
+}
+
+#btn_crear{
+    -fx-text-fill: #fffffe;
+    -fx-background-color: #3f4149;
+    -fx-border-radius: 30;
+}
+#btn_crear:hover{
+    -fx-background-color: #2cb67d;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-background-radius: 8px;
+}
+#btn_editar{
+    -fx-text-fill: #fffffe;
+    -fx-background-color: #3f4149;
+    -fx-border-radius: 30;
+}
+#btn_editar:hover{
+    -fx-background-color: #3a6ddc;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-background-radius: 8px;
+}
+#btn_eliminar{
+    -fx-text-fill: #fffffe;
+    -fx-background-color: #3f4149;
+    -fx-border-radius: 30;
+}
+#btn_eliminar:hover{
+    -fx-background-color: #e31515;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-background-radius: 8px;
+}
+#clp_fechacumpleanos{
+    -fx-text-fill: #fffffe;
+    -fx-font-weight: bold;
+}
+#clp_fechacumpleanos Label{
+    -fx-text-fill: #3f4149;
+}
+
+.text-input:editable:right .box .arrow-button{
+    -fx-background-color: #3f4149;
+    -fx-border-color: transparent;
+}
+.text-input:editable:right .box .arrow-button .arrow{
+    -fx-background-color: #fff;
+    -fx-opacity: 4;
+}
+GridPane{
+    -fx-padding: 3px;
+    -fx-background-color: #7f5af0;
+    -fx-background-radius: 3px;
+    -fx-border-width: 2px;
+    -fxborder-color: #fffffe;
+}
+GridPane Label{
+    -fx-text-fill: #fffffe;
+    -fx-font-weight: bold;
+    -fx-border-radius: 20;
+    -fx-font-size: 13;
+}
+GridPane TextField{
+    -fx-background-color: #b8c1ec;
+    -fx-border-radius: 5px;
+    -fx-text-fill: #fffffe;
+    -fx-font-weight: bold;
+}
+#txt_correo{
+    -fx-background-color: #3f4149;
+    -fx-border-radius: 5px;
+    -fx-text-fill: #fffffe;
+    -fx-font-weight: bold;
+    -fx-border-color: transparent;
+}
+#btn_cargarFoto{
+    -fx-text-fill: #fffffe;
+    -fx-background-color: #3f4149;
+    -fx-border-radius: 30;
+    -fx-font-size: 14px;
+    -fx-background-radius: 8px;
+}
+#btn_cargarFoto:hover{
+    -fx-background-color: #41d9f4;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+#cmb_opcionesBusqueda .arrow{
+    -fx-background-color: black;
+}
+#cmb_opcionesBusqueda{
+    -fx-background-color: #7f5af0;
+    -fx-text-fill: #fffffe;
+    -fx-max-width: 150px;
+    -fx-background-radius: 8px;
+}
+#cmb_opcionesBusqueda .list-view {
+    -fx-min-width: 150px;
+    -fx-background-color: #2cb67d;
+    -fx-border-color: #2cb67d;
+    -fx-border-radius: 5px;
+    -fx-text-fill: #fffffe;
+    -fx-opacity: 0.9;
+}
+#txt_busquedaFiltro{
+    -fx-background-color: #94a1b2;
+    -fx-text-fill: #fffffe;
+}
+.email-field .custom-text-field .left-pane .mail-icon-wrapper .mail-icon{
+    -fx-background-color: #7f5af0;
+}
+
+.email-field .custom-text-field{
+    -fx-background-color: #b8c1ec;
+    -fx-border-radius: 5px;
+    -fx-text-fill: #fffffe;
+    -fx-font-weight: bold;
+    -fx-border-color: #72757e;
+}
+
+#tb_tablaContactos{
+    -fx-background-color: #72757e;
+    -fx-border-color: transparent;
+    -fx-opacity: 0.9;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 8px;
+}
+#tb_tablaContactos .table-column{
+    -fx-background-color: #2cb67d;
+    -fx-fill: #fffffe;
+}
+#tb_tablaContactos .table-column .label .text{
+    -fx-fill: #fffffe;
+}
+.table-view .scroll-bar {
+    -fx-background-color: #2cb67d;
+}
+.email-field{
+    -fx-region-border: transparent;
+}
