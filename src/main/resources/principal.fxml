@@ -34,7 +34,7 @@
          <TextField fx:id="txt_telefono" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
          <Label text="Email" GridPane.rowIndex="4" />
-         <EmailField fx:id="txt_correo" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+         <TextField fx:id="txt_correo" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
 
          <Label text="Foto" GridPane.rowIndex="5" />

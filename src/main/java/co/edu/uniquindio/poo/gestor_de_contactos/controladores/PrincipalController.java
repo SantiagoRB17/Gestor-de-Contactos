@@ -3,8 +3,6 @@ package co.edu.uniquindio.poo.gestor_de_contactos.controladores;
 import co.edu.uniquindio.poo.gestor_de_contactos.modelo.Contacto;
 import co.edu.uniquindio.poo.gestor_de_contactos.modelo.GestionContactos;
 import com.dlsc.gemsfx.CalendarPicker;
-import com.dlsc.gemsfx.EmailField;
-import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -75,7 +73,7 @@ public class PrincipalController implements Initializable {
     private TextField txt_buscarTelONom;
 
     @FXML
-    private EmailField txt_correo;
+    private TextField txt_correo;
 
     @FXML
     private TextField txt_nombre;
@@ -129,7 +127,7 @@ public class PrincipalController implements Initializable {
                 txt_apellido.setText(contactoSeleccionado.getApellido());
                 clp_fechacumpleanos.setValue(contactoSeleccionado.getFechaCumpleano());
                 txt_telefono.setText(contactoSeleccionado.getTelefono());
-                txt_correo.setEmailAddress(contactoSeleccionado.getEmail());
+                txt_correo.setText(contactoSeleccionado.getEmail());
             }
         });
 
@@ -144,7 +142,7 @@ public class PrincipalController implements Initializable {
             gestionContactos.agregarContacto(
                     txt_nombre.getText(),
                     txt_apellido.getText(),
-                    txt_correo.getEmailAddress(),
+                    txt_correo.getText(),
                     txt_telefono.getText(),
                     clp_fechacumpleanos.getValue()
             );
@@ -187,10 +185,9 @@ public class PrincipalController implements Initializable {
      * Limpia los campos de texto del formulario
      */
     public void limpiarCampos(){
-        System.out.println(txt_correo);
         txt_nombre.clear();
         txt_apellido.clear();
-        txt_correo.setEmailAddress("");
+        txt_correo.clear();
         txt_telefono.clear();
         clp_fechacumpleanos.setValue(null);
     }

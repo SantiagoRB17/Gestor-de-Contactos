@@ -71,16 +71,10 @@ GridPane Label{
 GridPane TextField{
     -fx-background-color: #b8c1ec;
     -fx-border-radius: 5px;
-    -fx-text-fill: #fffffe;
+    -fx-text-fill: black;
     -fx-font-weight: bold;
 }
-#txt_correo{
-    -fx-background-color: #3f4149;
-    -fx-border-radius: 5px;
-    -fx-text-fill: #fffffe;
-    -fx-font-weight: bold;
-    -fx-border-color: transparent;
-}
+
 #btn_cargarFoto{
     -fx-text-fill: #fffffe;
     -fx-background-color: #3f4149;
@@ -109,17 +103,6 @@ GridPane TextField{
     -fx-border-radius: 5px;
     -fx-text-fill: #fffffe;
     -fx-opacity: 0.9;
-}
-.email-field .custom-text-field .left-pane .mail-icon-wrapper .mail-icon{
-    -fx-background-color: #7f5af0;
-}
-
-.email-field .custom-text-field{
-    -fx-background-color: #b8c1ec;
-    -fx-border-radius: 5px;
-    -fx-text-fill: #fffffe;
-    -fx-font-weight: bold;
-    -fx-border-color: #72757e;
 }
 
 #tb_tablaContactos{
@@ -155,12 +138,13 @@ GridPane TextField{
 #txt_buscar{
     -fx-background-color: #b8c1ec;
     -fx-border-radius: 5px;
-    -fx-text-fill: #fffffe;
+    -fx-text-fill: black;
     -fx-font-weight: bold;
 }
 
 #txt_buscarTelONom{
     -fx-background-color: #b8c1ec;
     -fx-border-radius: 5px;
-    -fx-text-fill: #fffffe;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
 }
