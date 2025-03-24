@@ -8,4 +8,7 @@ module co.edu.uniquindio.poo.gestor_de_contactos {
 
     opens co.edu.uniquindio.poo.gestor_de_contactos to javafx.fxml;
     exports co.edu.uniquindio.poo.gestor_de_contactos;
+    exports co.edu.uniquindio.poo.gestor_de_contactos.modelo;
+    exports co.edu.uniquindio.poo.gestor_de_contactos.controladores;
+    opens co.edu.uniquindio.poo.gestor_de_contactos.controladores to javafx.fxml;
 }

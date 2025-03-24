@@ -82,7 +82,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                co.edu.uniquindio.poo.gestor_de_contactos/co.edu.uniquindio.poo.gestor_de_contactos.HelloApplication
+                                co.edu.uniquindio.poo.gestor_de_contactos/co.edu.uniquindio.poo.gestor_de_contactos.ContactosApp
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>

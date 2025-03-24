@@ -110,10 +110,6 @@ GridPane TextField{
     -fx-text-fill: #fffffe;
     -fx-opacity: 0.9;
 }
-#txt_busquedaFiltro{
-    -fx-background-color: #94a1b2;
-    -fx-text-fill: #fffffe;
-}
 .email-field .custom-text-field .left-pane .mail-icon-wrapper .mail-icon{
     -fx-background-color: #7f5af0;
 }
@@ -133,16 +129,38 @@ GridPane TextField{
     -fx-border-radius: 5px;
     -fx-background-radius: 8px;
 }
-#tb_tablaContactos .table-column{
-    -fx-background-color: #2cb67d;
-    -fx-fill: #fffffe;
+.table-view .table-cell {
+    -fx-background-color: #72757e;
+    -fx-text-fill: #fffffe;
 }
-#tb_tablaContactos .table-column .label .text{
-    -fx-fill: #fffffe;
+.column-header{
+    -fx-background-color: #2cb67d;
+}
+
+#tb_tablaContactos .table-view{
+    -fx-background-color:  #72757e;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-font-size: 10;
+}
+.table-view .column-header .label {
+    -fx-text-fill: white;
 }
 .table-view .scroll-bar {
     -fx-background-color: #2cb67d;
 }
 .email-field{
     -fx-region-border: transparent;
+}
+#txt_buscar{
+    -fx-background-color: #b8c1ec;
+    -fx-border-radius: 5px;
+    -fx-text-fill: #fffffe;
+    -fx-font-weight: bold;
+}
+
+#txt_buscarTelONom{
+    -fx-background-color: #b8c1ec;
+    -fx-border-radius: 5px;
+    -fx-text-fill: #fffffe;
 }
