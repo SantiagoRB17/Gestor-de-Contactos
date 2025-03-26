@@ -12,5 +12,6 @@ public class ValidacionCorreo {
         valido= matcher.matches();
         return valido;
     }
-
+    
 }
+

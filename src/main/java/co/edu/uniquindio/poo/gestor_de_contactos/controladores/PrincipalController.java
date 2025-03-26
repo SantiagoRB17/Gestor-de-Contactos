@@ -92,10 +92,6 @@ public class PrincipalController implements Initializable {
 
     }
 
-    @FXML
-    void eliminarContacto(ActionEvent event) {
-
-    }
 
     private final GestionContactos gestionContactos;
     private Contacto contactoSeleccionado;
@@ -116,6 +112,8 @@ public class PrincipalController implements Initializable {
         //Inicializar lista observable y cargar los contactos
         contactosObservable= FXCollections.observableArrayList();
         cargarContactos();
+
+        cmb_opcionesBusqueda.setItems(FXCollections.observableList(gestionContactos.listarOpciones()));
 
         //Evento click en la tabla
         tb_tablaContactos.setOnMouseClicked(event -> {
@@ -190,6 +188,23 @@ public class PrincipalController implements Initializable {
         txt_correo.clear();
         txt_telefono.clear();
         clp_fechacumpleanos.setValue(null);
+    }
+    /**
+     * Controlador del boton eliminar contacto
+     * @param e
+     */
+    public void eliminarContacto(ActionEvent e) {
+        try {
+            if (contactoSeleccionado != null) {
+                gestionContactos.eliminarContacto(contactoSeleccionado.getId());
+
+                limpiarCampos();
+                actualizarContactos();
+                mostrarAlerta("Contacto eliminado", Alert.AlertType.INFORMATION);
+            }
+        } catch (Exception ex) {
+            mostrarAlerta(ex.getMessage(), Alert.AlertType.ERROR);
+        }
     }
 }
 

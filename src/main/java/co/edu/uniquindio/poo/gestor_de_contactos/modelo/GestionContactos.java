@@ -78,6 +78,48 @@ public class GestionContactos {
         return contactos;
     }
 
+    /**
+     * Metodo para crear una lista con las opciones de busqueda para el combo box
+     * @return lista con las opciones de busqueda
+     */
+    public ArrayList<String> listarOpciones(){
+        ArrayList<String> opciones=new ArrayList<>();
+        opciones.add("Telefono");
+        opciones.add("Nombre");
+        return opciones;
+    }
 
+    /**
+        * Metodo que elimina el contacto de la lista de contactos
+     * @param id
+     * @throws Exception
+     */
+    public void eliminarContacto(String id) throws Exception {
+        if(buscarContacto(id)!=-1){
+            contactos.remove(buscarContacto(id));
+        }
+        else {
+
+            throw new Exception("No existe el contacto");
+        }
+    }
+
+    /**
+     * Metodo que busca un contacto segun su id
+     * @param id id del usuario
+     * @return posicion del usuario en la lista
+     */
+    public int buscarContacto(String id){
+        int posContacto=0;
+        for(int i=0; i<contactos.size(); i++){
+            if(contactos.get(i).getId().equals(id)){
+                return posContacto=i;
+            }
+        }
+        return-1;
+    }
 }
+
+
+
 
