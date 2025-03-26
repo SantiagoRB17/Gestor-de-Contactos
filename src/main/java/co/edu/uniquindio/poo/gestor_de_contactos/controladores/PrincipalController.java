@@ -10,9 +10,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import javafx.stage.Window;
 
+
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -82,12 +87,6 @@ public class PrincipalController implements Initializable {
     private TextField txt_telefono;
 
     @FXML
-    void cargarFoto(ActionEvent event) {
-
-    }
-
-
-    @FXML
     void editarContacto(ActionEvent event) {
 
     }
@@ -101,6 +100,7 @@ public class PrincipalController implements Initializable {
         gestionContactos=new GestionContactos();
     }
 
+    Image imagenDefault=new Image(getClass().getResource("/perfilvacio.jpg").toExternalForm());
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle){
         cl_nombre.setCellValueFactory(cellData->new SimpleStringProperty(cellData.getValue().getNombre()));
@@ -114,6 +114,8 @@ public class PrincipalController implements Initializable {
         cargarContactos();
 
         cmb_opcionesBusqueda.setItems(FXCollections.observableList(gestionContactos.listarOpciones()));
+
+        img_imagenDisplay.setImage(imagenDefault);
 
         //Evento click en la tabla
         tb_tablaContactos.setOnMouseClicked(event -> {
@@ -180,6 +182,35 @@ public class PrincipalController implements Initializable {
     }
 
     /**
+     * Controlador del boton cargar foto
+     * @param e
+     */
+    public void cargarFoto(ActionEvent e){
+        //Creacion de la instancia de la clase file chooser
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Cargar Imagen");
+        //Creacion del fitro para solo imagenes
+        FileChooser.ExtensionFilter filtro = new FileChooser.ExtensionFilter("Archivos de Imagen", "*.jpg","*.png");
+        fc.getExtensionFilters().add(filtro);
+
+        //Obtener la ventana del boton para asociarla al file chooser
+        Window ventana=btn_cargarFoto.getScene().getWindow();
+
+        File file = fc.showOpenDialog(ventana);
+
+        if (file != null) {
+            img_imagenDisplay.setImage(new Image(file.toURI().toString()));
+        }
+    }
+
+    /**
+     * Controlador del boton limpiar
+     * @param e
+     */
+    public void limpiarFormulario(ActionEvent e){
+        limpiarCampos();
+    }
+    /**
      * Limpia los campos de texto del formulario
      */
     public void limpiarCampos(){
@@ -187,6 +218,7 @@ public class PrincipalController implements Initializable {
         txt_apellido.clear();
         txt_correo.clear();
         txt_telefono.clear();
+        img_imagenDisplay.setImage(imagenDefault);
         clp_fechacumpleanos.setValue(null);
     }
     /**

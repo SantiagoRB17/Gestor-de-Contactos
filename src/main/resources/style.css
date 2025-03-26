@@ -39,13 +39,7 @@
     -fx-scale-y: 1.1;
     -fx-background-radius: 8px;
 }
-#clp_fechacumpleanos{
-    -fx-text-fill: #fffffe;
-    -fx-font-weight: bold;
-}
-#clp_fechacumpleanos Label{
-    -fx-text-fill: #3f4149;
-}
+
 
 .text-input:editable:right .box .arrow-button{
     -fx-background-color: #3f4149;
@@ -55,26 +49,30 @@
     -fx-background-color: #fff;
     -fx-opacity: 4;
 }
-GridPane{
-    -fx-padding: 3px;
-    -fx-background-color: #7f5af0;
-    -fx-background-radius: 3px;
-    -fx-border-width: 2px;
-    -fxborder-color: #fffffe;
-}
+
 GridPane Label{
     -fx-text-fill: #fffffe;
     -fx-font-weight: bold;
     -fx-border-radius: 20;
-    -fx-font-size: 13;
+    -fx-font-size: 15px;
 }
+
 GridPane TextField{
     -fx-background-color: #b8c1ec;
     -fx-border-radius: 5px;
     -fx-text-fill: black;
     -fx-font-weight: bold;
 }
-
+#btn_limpiarCampos{
+    -fx-text-fill: #fffffe;
+    -fx-background-color: #3f4149;
+    -fx-border-radius: 30;
+}
+#btn_limpiarCampos:hover{
+    -fx-background-color: #ff5757;
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
 #btn_cargarFoto{
     -fx-text-fill: #fffffe;
     -fx-background-color: #3f4149;
@@ -147,4 +145,10 @@ GridPane TextField{
     -fx-border-radius: 5px;
     -fx-text-fill: black;
     -fx-font-weight: bold;
+}
+
+
+#clp_fechacumpleanos Label{
+    -fx-text-fill: #3f4149;
+    -fx-font-size: 13;
 }
