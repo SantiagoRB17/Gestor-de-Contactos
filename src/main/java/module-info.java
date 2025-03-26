@@ -5,6 +5,7 @@ module co.edu.uniquindio.poo.gestor_de_contactos {
     requires static lombok;
     requires com.dlsc.gemsfx;
     requires jfxtras.controls;
+    requires java.desktop;
 
     opens co.edu.uniquindio.poo.gestor_de_contactos to javafx.fxml;
     exports co.edu.uniquindio.poo.gestor_de_contactos;
