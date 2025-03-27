@@ -17,6 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
+import jfxtras.scene.layout.HBox;
 
 
 import java.io.File;
@@ -189,6 +190,7 @@ public class PrincipalController implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText(mensaje);
         alert.show();
+
     }
 
     /**
@@ -309,6 +311,20 @@ public class PrincipalController implements Initializable {
             }
         }
         return validacion;
+    }
+
+    /**
+     * Metodo que muestra la primera coincidencia de un contacto segun su nombre
+     * @param e
+     */
+    public void mostarContacto(ActionEvent e){
+        List<Contacto> contacto= gestionContactos.buscarContactoNombre(txt_buscar.getText());
+        if(contacto.isEmpty()){
+            mostrarAlerta("Contacto no encontrado", Alert.AlertType.ERROR);
+        }else{
+            Contacto contactoEncontrado = contacto.getFirst();
+            mostrarAlerta(contactoEncontrado.toString(), Alert.AlertType.INFORMATION);
+        }
     }
 }
 

@@ -43,7 +43,7 @@
             <ImageView fx:id="img_imagenDisplay" fitHeight="183.0" fitWidth="209.0" pickOnBounds="true" preserveRatio="true" />
          </VBox>
          <Label text="Buscar" GridPane.rowIndex="6" />
-         <TextField fx:id="txt_buscar" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+         <TextField fx:id="txt_buscar" onAction="#mostarContacto" GridPane.columnIndex="1" GridPane.rowIndex="6" />
          <columnConstraints>
             <ColumnConstraints maxWidth="97.60000610351562" minWidth="80.79998779296875" prefWidth="89.59998168945313" />
             <ColumnConstraints maxWidth="362.40001220703124" minWidth="345.59999389648436" prefWidth="354.4000183105469" />
