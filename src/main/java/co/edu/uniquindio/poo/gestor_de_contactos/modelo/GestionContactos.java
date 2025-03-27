@@ -2,11 +2,13 @@ package co.edu.uniquindio.poo.gestor_de_contactos.modelo;
 
 import co.edu.uniquindio.poo.gestor_de_contactos.validaciones.ValidacionCorreo;
 import co.edu.uniquindio.poo.gestor_de_contactos.validaciones.ValidacionTelefono;
+import javafx.scene.image.Image;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class GestionContactos {
 
@@ -27,7 +29,7 @@ public class GestionContactos {
      * @throws Exception Lanza una excepcion en caso de los valores de nombre, apellido, email y fecha de nacimiento
      * esten vacios, además de lanzar una excepcion si el correo o telefono no cumplen con el formato de la expresion regular
      */
-    public void agregarContacto(String nombre, String apellido, String email, String telefono, LocalDate fechaCumpleano ) throws Exception {
+    public void agregarContacto(String nombre, String apellido, String email, String telefono, LocalDate fechaCumpleano, Image imagen) throws Exception {
         if(!verificarContacto(telefono)){
             if(nombre.isEmpty() || apellido.isEmpty() || email.isEmpty()){
                 throw new Exception("Todos los campos son obligatorios");
@@ -41,6 +43,9 @@ public class GestionContactos {
             if(!ValidacionTelefono.validarTelefono(telefono)){
                 throw new Exception("Telefono invalido");
             }
+            if(imagen == null) {
+                imagen = new Image(getClass().getResource("/perfilvacio.jpg").toExternalForm());
+            }
             Contacto contacto= Contacto.builder()
                     .id(UUID.randomUUID().toString())
                     .nombre(nombre)
@@ -48,6 +53,7 @@ public class GestionContactos {
                     .email(email)
                     .telefono(telefono)
                     .fechaCumpleano(fechaCumpleano)
+                    .imagenPefil(imagen)
                     .build();
             contactos.add(contacto);
         } else{
@@ -90,7 +96,7 @@ public class GestionContactos {
     }
 
     /**
-        * Metodo que elimina el contacto de la lista de contactos
+     * Metodo que elimina el contacto de la lista de contactos
      * @param id
      * @throws Exception
      */
@@ -117,6 +123,30 @@ public class GestionContactos {
             }
         }
         return-1;
+    }
+
+    /**
+     * Metodo que busca un contacto segun su telefono
+     * @param telefono telefono del contacto a buscar
+     * @return retorna una lista de contactos con ese telefono
+     */
+    public List<Contacto> buscarContactoTelefono(String telefono){
+        return contactos
+                .stream()
+                .filter(c -> c.getTelefono().equals(telefono))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Metodo que busca un contacto según su nombre
+     * @param nombre nombre del contacto a buscar
+     * @return retorna una lista de contactos con ese nombre
+     */
+    public List<Contacto> buscarContactoNombre(String nombre){
+        return contactos
+                .stream()
+                .filter(c -> c.getNombre().equalsIgnoreCase(nombre))
+                .collect(Collectors.toList());
     }
 }
 

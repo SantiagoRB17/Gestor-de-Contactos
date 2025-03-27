@@ -93,6 +93,7 @@ GridPane TextField{
     -fx-text-fill: #fffffe;
     -fx-max-width: 150px;
     -fx-background-radius: 8px;
+    -fx-font-weight: bold;
 }
 #cmb_opcionesBusqueda .list-view {
     -fx-min-width: 150px;
@@ -100,6 +101,7 @@ GridPane TextField{
     -fx-border-color: #2cb67d;
     -fx-border-radius: 5px;
     -fx-text-fill: #fffffe;
+    -fx-font-weight: bold;
     -fx-opacity: 0.9;
 }
 
@@ -151,4 +153,15 @@ GridPane TextField{
 #clp_fechacumpleanos Label{
     -fx-text-fill: #3f4149;
     -fx-font-size: 13;
+}
+#vbox_cargarfoto{
+    -fx-spacing: 10;
+    -fx-padding: 10;
+}
+#btn_refrescarTabla{
+    -fx-background-color: #7f5af0;
+    -fx-text-fill: #262626;
+    -fx-max-width: 150px;
+    -fx-background-radius: 8px;
+    -fx-font-weight: bold;
 }

@@ -2,6 +2,8 @@ package co.edu.uniquindio.poo.gestor_de_contactos.controladores;
 
 import co.edu.uniquindio.poo.gestor_de_contactos.modelo.Contacto;
 import co.edu.uniquindio.poo.gestor_de_contactos.modelo.GestionContactos;
+import co.edu.uniquindio.poo.gestor_de_contactos.validaciones.ValidacionTelefono;
+import co.edu.uniquindio.poo.gestor_de_contactos.validaciones.ValidacionTexto;
 import com.dlsc.gemsfx.CalendarPicker;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -19,6 +21,8 @@ import javafx.stage.Window;
 
 import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class PrincipalController implements Initializable {
@@ -128,6 +132,7 @@ public class PrincipalController implements Initializable {
                 clp_fechacumpleanos.setValue(contactoSeleccionado.getFechaCumpleano());
                 txt_telefono.setText(contactoSeleccionado.getTelefono());
                 txt_correo.setText(contactoSeleccionado.getEmail());
+                img_imagenDisplay.setImage(contactoSeleccionado.getImagenPefil());
             }
         });
 
@@ -144,10 +149,11 @@ public class PrincipalController implements Initializable {
                     txt_apellido.getText(),
                     txt_correo.getText(),
                     txt_telefono.getText(),
-                    clp_fechacumpleanos.getValue()
+                    clp_fechacumpleanos.getValue(),
+                    img_imagenDisplay.getImage()
             );
             limpiarCampos();
-            actualizarContactos();
+            actualizarContactos(gestionContactos.listarContactos());
             mostrarAlerta("Contacto creado correctamente", Alert.AlertType.INFORMATION);
         }catch(Exception ex){
             mostrarAlerta(ex.getMessage(), Alert.AlertType.ERROR);
@@ -164,8 +170,12 @@ public class PrincipalController implements Initializable {
     /**
      * Actualiza la lista observable de contactos
      */
-    public void actualizarContactos(){
-        contactosObservable.setAll(gestionContactos.listarContactos());
+    public void actualizarContactos(List<Contacto> contactos){
+        contactosObservable.setAll(contactos);
+    }
+
+    public void refrescarTabla(ActionEvent e){
+        actualizarContactos(gestionContactos.listarContactos());
     }
 
     /**
@@ -231,12 +241,74 @@ public class PrincipalController implements Initializable {
                 gestionContactos.eliminarContacto(contactoSeleccionado.getId());
 
                 limpiarCampos();
-                actualizarContactos();
+                actualizarContactos(gestionContactos.listarContactos());
                 mostrarAlerta("Contacto eliminado", Alert.AlertType.INFORMATION);
             }
         } catch (Exception ex) {
             mostrarAlerta(ex.getMessage(), Alert.AlertType.ERROR);
         }
+    }
+
+    /**
+     * Metodo que filtra la tabla dependiendo de la opcion seleccionada en el combo box
+     * @param actionEvent
+     */
+    public void filtrarTabla(ActionEvent actionEvent) {
+        try {
+            if(!verificarIngresado()){
+                mostrarAlerta("Ingrese un formato valido", Alert.AlertType.ERROR);
+            }
+        }catch(Exception ex){
+            mostrarAlerta(ex.getMessage(), Alert.AlertType.ERROR);
+        }
+
+        String valor = txt_buscarTelONom.getText();
+        String tipo = cmb_opcionesBusqueda.getSelectionModel().getSelectedItem();
+
+        List<Contacto> contactos = new ArrayList<>();
+
+        if(!valor.isEmpty()){
+
+            contactos = switch (tipo){
+                case "Nombre" -> gestionContactos.buscarContactoNombre(valor);
+                case "Telefono" -> gestionContactos.buscarContactoTelefono(valor);
+                default -> throw new IllegalStateException("Unexpected value: " + tipo);
+            };
+
+                actualizarContactos(contactos);
+        }
+
+    }
+
+    /**
+     * Metodo que verifica si se seleccionó una opcion en el combo box o se ingresó el formato correcto
+     * @return true si pasa las validaciones false si no las pasa
+     * @throws Exception arroja una excepcion si no selecciona una opcion
+     */
+    public boolean verificarIngresado() throws  Exception{
+
+        String valor = txt_buscarTelONom.getText();
+        String tipo = cmb_opcionesBusqueda.getSelectionModel().getSelectedItem();
+
+        boolean validacion = false;
+
+        if(tipo==null || tipo.isEmpty()){
+            throw new Exception("Seleccione una opcion");
+        } else if (valor==null || valor.isEmpty()) {
+            validacion=false;
+        }else{
+            switch(tipo){
+                case "Nombre":
+                    validacion= ValidacionTexto.validarTexto(valor);
+                    break;
+                case "Telefono":
+                    validacion=ValidacionTelefono.validarTelefono(valor);
+                    break;
+                default:
+                    throw new Exception("Seleccione una opcion");
+            }
+        }
+        return validacion;
     }
 }
 
