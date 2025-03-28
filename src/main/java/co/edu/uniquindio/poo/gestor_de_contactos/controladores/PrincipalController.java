@@ -318,9 +318,11 @@ public class PrincipalController implements Initializable {
         List<Contacto> contacto= gestionContactos.buscarContactoNombre(txt_buscar.getText());
         if(contacto.isEmpty()){
             mostrarAlerta("Contacto no encontrado", Alert.AlertType.ERROR);
+            txt_buscar.clear();
         }else{
             Contacto contactoEncontrado = contacto.getFirst();
             mostrarAlerta(contactoEncontrado.toString(), Alert.AlertType.INFORMATION);
+            txt_buscar.clear();
         }
     }
 
@@ -347,7 +349,8 @@ public class PrincipalController implements Initializable {
                     txt_apellido.getText(),
                     txt_correo.getText(),
                     txt_telefono.getText(),
-                    clp_fechacumpleanos.getValue()
+                    clp_fechacumpleanos.getValue(),
+                    img_imagenDisplay.getImage()
             );
 
             mostrarAlerta("Éxito", "Contacto editado correctamente", Alert.AlertType.INFORMATION);

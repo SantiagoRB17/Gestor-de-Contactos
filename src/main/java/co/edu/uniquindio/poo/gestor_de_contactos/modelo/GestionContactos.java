@@ -165,7 +165,7 @@ public class GestionContactos {
      * @throws Exception Lanza excepción si no existe el contacto o si hay datos inválidos
      */
     public void editarContacto(String id, String nombre, String apellido, String email,
-                               String telefono, LocalDate fechaCumpleano) throws Exception {
+                               String telefono, LocalDate fechaCumpleano,Image imagen) throws Exception {
         int index = buscarContacto(id);
 
         if(index == -1) {
@@ -188,13 +188,14 @@ public class GestionContactos {
         if(!ValidacionTelefono.validarTelefono(telefono)) {
             throw new Exception("Teléfono inválido");
         }
-
+        if(imagen == null) {
+            imagen = new Image(getClass().getResource("/perfilvacio.jpg").toExternalForm());
+        }
         // Verificar si el teléfono ya existe en otro contacto
         Contacto contactoExistente = obtenerContactoPorTelefono(telefono);
         if(contactoExistente != null && !contactoExistente.getId().equals(id)) {
             throw new Exception("Ya existe un contacto con este número de teléfono");
         }
-
         // Actualizar el contacto
         Contacto contacto = contactos.get(index);
         contacto.setNombre(nombre);
@@ -202,6 +203,7 @@ public class GestionContactos {
         contacto.setEmail(email);
         contacto.setTelefono(telefono);
         contacto.setFechaCumpleano(fechaCumpleano);
+        contacto.setImagenPefil(imagen);
     }
 
     /**
