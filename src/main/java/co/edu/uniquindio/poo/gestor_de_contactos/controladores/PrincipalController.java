@@ -91,10 +91,7 @@ public class PrincipalController implements Initializable {
     @FXML
     private TextField txt_telefono;
 
-    @FXML
-    void editarContacto(ActionEvent event) {
 
-    }
 
 
     private final GestionContactos gestionContactos;
@@ -326,5 +323,66 @@ public class PrincipalController implements Initializable {
             mostrarAlerta(contactoEncontrado.toString(), Alert.AlertType.INFORMATION);
         }
     }
+
+
+
+
+
+
+
+    public void editarContacto(ActionEvent event) {
+        try {
+            if (contactoSeleccionado == null) {
+                mostrarAlerta("Error", "Seleccione un contacto para editar", Alert.AlertType.ERROR);
+                return;
+            }
+
+            // Validar campos
+            if (!validarCampos()) return;
+
+            // Editar el contacto
+            gestionContactos.editarContacto(
+                    contactoSeleccionado.getId(),
+                    txt_nombre.getText(),
+                    txt_apellido.getText(),
+                    txt_correo.getText(),
+                    txt_telefono.getText(),
+                    clp_fechacumpleanos.getValue()
+            );
+
+            mostrarAlerta("Éxito", "Contacto editado correctamente", Alert.AlertType.INFORMATION);
+            actualizarTabla();
+            limpiarFormulario(event);
+
+        } catch (Exception e) {
+            mostrarAlerta("Error", e.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
+
+    private boolean validarCampos() {
+        if (txt_nombre.getText().isEmpty() || txt_apellido.getText().isEmpty() ||
+                txt_correo.getText().isEmpty() || txt_telefono.getText().isEmpty() ||
+                clp_fechacumpleanos.getValue() == null) {
+            mostrarAlerta("Error", "Todos los campos son obligatorios", Alert.AlertType.ERROR);
+            return false;
+        }
+        return true;
+    }
+
+    private void actualizarTabla() {
+        tb_tablaContactos.getItems().setAll(gestionContactos.listarContactos());
+    }
+
+
+
+
+    private void mostrarAlerta(String titulo, String mensaje, Alert.AlertType tipo) {
+        Alert alert = new Alert(tipo);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
+    }
+
 }
 

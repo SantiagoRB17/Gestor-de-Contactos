@@ -23,3 +23,4 @@ public class Contacto {
                 ", Cumpleaños=" + fechaCumpleano;
     }
 }
+

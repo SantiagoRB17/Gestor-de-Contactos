@@ -110,6 +110,10 @@ public class GestionContactos {
         }
     }
 
+    public void editarContacto(String id) throws Exception {
+
+    }
+
     /**
      * Metodo que busca un contacto segun su id
      * @param id id del usuario
@@ -148,6 +152,73 @@ public class GestionContactos {
                 .filter(c -> c.getNombre().equalsIgnoreCase(nombre))
                 .collect(Collectors.toList());
     }
+
+
+    /**
+     * Método que permite editar la información de un contacto existente
+     * @param id Identificador único del contacto a editar
+     * @param nombre Nuevo nombre del contacto
+     * @param apellido Nuevo apellido del contacto
+     * @param email Nuevo email del contacto
+     * @param telefono Nuevo teléfono del contacto
+     * @param fechaCumpleano Nueva fecha de cumpleaños del contacto
+     * @throws Exception Lanza excepción si no existe el contacto o si hay datos inválidos
+     */
+    public void editarContacto(String id, String nombre, String apellido, String email,
+                               String telefono, LocalDate fechaCumpleano) throws Exception {
+        int index = buscarContacto(id);
+
+        if(index == -1) {
+            throw new Exception("No existe el contacto con el ID especificado");
+        }
+
+        // Validaciones (consistentes con agregarContacto)
+        if(nombre.isEmpty() || apellido.isEmpty() || email.isEmpty()) {
+            throw new Exception("Todos los campos son obligatorios");
+        }
+
+        if(!ValidacionCorreo.validarExpresionRegular(email)) {
+            throw new Exception("Email inválido");
+        }
+
+        if(fechaCumpleano == null) {
+            throw new Exception("La fecha de cumpleaños es obligatoria");
+        }
+
+        if(!ValidacionTelefono.validarTelefono(telefono)) {
+            throw new Exception("Teléfono inválido");
+        }
+
+        // Verificar si el teléfono ya existe en otro contacto
+        Contacto contactoExistente = obtenerContactoPorTelefono(telefono);
+        if(contactoExistente != null && !contactoExistente.getId().equals(id)) {
+            throw new Exception("Ya existe un contacto con este número de teléfono");
+        }
+
+        // Actualizar el contacto
+        Contacto contacto = contactos.get(index);
+        contacto.setNombre(nombre);
+        contacto.setApellido(apellido);
+        contacto.setEmail(email);
+        contacto.setTelefono(telefono);
+        contacto.setFechaCumpleano(fechaCumpleano);
+    }
+
+    /**
+     * Método auxiliar para obtener un contacto por su teléfono
+     * @param telefono Número de teléfono a buscar
+     * @return El contacto encontrado o null si no existe
+     */
+    private Contacto obtenerContactoPorTelefono(String telefono) {
+        for(Contacto contacto : contactos) {
+            if(contacto.getTelefono().equals(telefono)) {
+                return contacto;
+            }
+        }
+        return null;
+    }
+
+
 }
 
 
